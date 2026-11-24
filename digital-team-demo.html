@@ -35,7 +35,38 @@
 @media(max-width:1100px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:800px){.workspace{display:block}.workspace aside{display:none}.workspace main{padding:24px 5%}.demo-header .identity-row{flex-wrap:wrap}.demo-header .project{margin-left:0}.head{flex-wrap:wrap}.head input{max-width:none}}
 @media(max-width:550px){#grid{grid-template-columns:1fr}.workspace article{padding:18px}.demo-header .project{width:100%}}
-</style><header class="site-header demo-header"><div class="identity-row"><a class="brand" href="index.html#home"><img src="assets/forum-logo-original.png" alt="岭南数字论坛标识"><span>岭南数字论坛<small>LINGNAN DIGITAL FORUM</small></span></a><a class="committee-brand" href="committee.html"><span class="college-mark"><img src="assets/lingnan-college-logo-original.jpg" alt="中山大学岭南学院LOGO"></span><span><small>岭南广州校友会</small><b>科创与AI赋能专委会</b></span></a><a class="project" href="book.html">AI进化十步法 ↗</a></div></header><div class="workspace"><aside><h2>员工通讯录</h2><input id="lookup" aria-label="搜索通讯录" placeholder="搜索员工姓名或岗位"><nav id="directory"></nav></aside><main id="main"></main></div><script>
+
+.demo-header {padding:6px 2%;position:static}
+.demo-header .brand {font-size:16px}.demo-header .brand img {width:34px;height:34px}
+.demo-header .college-mark {display:none}.demo-header .committee-brand b {font-size:14px}
+.workspace {max-width:none;min-height:calc(100vh - 54px);grid-template-columns:72px 224px minmax(0,1fr);background:#f6f7fa}
+.rail {display:flex;flex-direction:column;align-items:center;gap:16px;background:#fff;border-right:1px solid #e1e4e9;padding:20px 3px}
+.rail a,.rail button {display:grid;place-items:center;padding:8px 2px;width:100%;border:0;font-size:11px;line-height:1.6;border-radius:5px}
+.rail button {background:#e9eef5}.rail b {font:20px Arial}
+.workspace aside {background:#fafbfd;border-color:#e0e3e8;padding:14px 10px}
+.workspace aside h2 {font-size:16px}.workspace input {border-radius:6px;font-size:13px;padding:7px 10px}
+#directory button {border-bottom:1px solid #e8ebef;border-radius:0;padding:9px 4px;line-height:1.5}
+#directory small,.employee-id {display:block;color:#687582;font:11px/1.7 Arial,sans-serif}
+.workspace main {padding:0 clamp(16px,2vw,36px) 32px}
+.bar {display:flex;align-items:center;gap:16px;min-height:46px;border-bottom:1px solid #dde1e6;font-size:12px}
+.bar strong {color:white;background:#172d46;padding:2px 9px;border-radius:5px;font-weight:400}
+.workspace h1 {font-size:25px;margin:22px 0 2px}
+.head p {font-size:13px;margin:0 0 15px}
+.filterrow {display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #dfe3e7}
+.filterrow strong {font-size:13px;padding:9px 0;border-bottom:2px solid #20374f;white-space:nowrap}
+.filterrow input {max-width:210px}
+#grid {gap:12px;margin-top:14px}
+.workspace article {padding:13px 14px 0;border:1px solid #dce1e7;border-radius:7px;min-height:150px}
+.employee {display:flex;align-items:center;gap:8px}.employee div {min-width:0}.employee h2 {font-size:15px;margin:0}
+.employee .status {margin-left:auto;font-size:11px;color:#496959;white-space:nowrap}
+.workspace article p {font-size:13px;margin:12px 0;line-height:1.6}
+.card-actions {border-top:1px solid #e6e8ec;padding:7px 0}.card-actions small {font-size:11px}
+.card-actions .go {background:#f2f4f7;border:1px solid #d8dfe6;color:#273e54;border-radius:4px;padding:3px 9px;font-size:12px}
+.card-actions .go:hover {background:#e1e8f0}
+.icon {flex:none;width:33px;height:33px;border-radius:50%;font-size:20px}.mini {width:29px;height:29px;font-size:17px}
+@media(min-width:1050px){#grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.workspace{display:block}.rail{display:none}.demo-header .identity-row{gap:8px}.demo-header .project{width:auto;margin-left:auto;font-size:12px}.demo-header .committee-brand{display:none}.workspace main{padding:0 4% 24px}.workspace article{min-height:140px}}
+</style><header class="site-header demo-header"><div class="identity-row"><a class="brand" href="index.html#home"><img src="assets/forum-logo-original.png" alt="岭南数字论坛标识"><span>岭南数字论坛<small>LINGNAN DIGITAL FORUM</small></span></a><a class="committee-brand" href="committee.html"><span class="college-mark"><img src="assets/lingnan-college-logo-original.jpg" alt="中山大学岭南学院LOGO"></span><span><small>岭南广州校友会</small><b>科创与AI赋能专委会</b></span></a><a class="project" href="book.html">AI进化十步法 ↗</a></div></header><div class="workspace"><nav class="rail" aria-label="工作台导航"><button onclick="home()"><b>▦</b>数字员工</button><a href="book.html"><b>▤</b>项目首页</a></nav><aside><h2>我的数字员工</h2><input id="lookup" aria-label="搜索通讯录" placeholder="搜索员工姓名或岗位"><nav id="directory"></nav></aside><main id="main"></main></div><script>
 const staff=[
 ['客户需求分析师','访','#d6e8d9','把客户原话整理成需求摘要和下一轮访谈问题。','分析客户访谈','我们有 8 个销售，每次拜访后都要写纪要。大家写法不一样，主管周五还得逐个问，下周该跟进谁。','需求摘要：纪要格式不统一，主管需要逐人确认跟进事项。','能否用最近一次拜访走一遍记录和跟进流程？\n主管每周花多少时间汇总？\n销售和主管分别需要哪些字段？','追问清单'],
 ['课程设计师','课','#f1dfbf','把培训目标拆成一节可以直接试讲的课程。','设计练习','给销售团队设计一节 30 分钟的 AI 纪要课。','课程目标：每人能从访谈中提取客户需求与下一步行动。','5 分钟：对比两份纪要。\n15 分钟：用同一段访谈练习提炼行动项。\n10 分钟：交换检查负责人和截止时间。','课程安排'],
@@ -44,10 +75,10 @@ const staff=[
 ['内容编辑','编','#f1dcd1','将活动信息改写成读者能直接使用的通知。','起草课程通知','周五 14 点在二楼会议室上纪要课，每人带一份脱敏记录。','面向学员的课前通知已整理。','本周五 14:00，请到二楼会议室参加纪要练习课。请提前准备一份脱敏的拜访记录，现场将用它练习提炼跟进事项。','课程通知'],
 ['复盘助手','复','#dde6c7','根据试点记录梳理成效和下轮调整事项。','复盘一次试点','5 人试用纪要模板，4 人按时提交，2 份缺少负责人。','本轮观察：按时提交 4 人，另有 2 份记录缺少负责人。','模板中单列负责人。\n提交前检查行动项。\n下轮记录按时提交数和字段缺失数。','改进清单']];
 const el=id=>document.getElementById(id);let selected=-1,query='';
-const icon=(r,mini='')=>'<span class="icon '+mini+'">'+r[1]+'</span>';
-function directory(){const q=el('lookup').value.trim();el('directory').innerHTML=staff.map((r,i)=>r[0].includes(q)?'<button class="'+(selected===i?'active':'')+'" onclick="chat('+i+')">'+icon(r,'mini')+r[0]+'</button>':'').join('')||'<p>没有匹配的员工</p>'}
-function cards(){const list=staff.map((r,i)=>[r,i]).filter(([r])=>(r[0]+r[3]).includes(query.trim()));el('count').textContent=list.length+' 位员工';el('grid').innerHTML=list.map(([r,i])=>'<article><div class="top">'+icon(r)+'<small>● 可用</small></div><h2>'+r[0]+'</h2><p>'+r[3]+'</p><div class="card-actions"><small>工号 00'+(i+1)+'</small><button class="go" onclick="chat('+i+')">开始会话 →</button></div></article>').join('')||'<p>没有匹配的员工，请换个关键词。</p>'}
-function home(){selected=-1;directory();el('main').innerHTML='<small>工作台 / 数字员工</small><div class="head"><div><h1>我的团队</h1><p>企业培训团队 · <span id="count"></span></p></div><input id="search" placeholder="搜索员工或工作内容" aria-label="搜索团队"></div><div id="grid" class="grid"></div>';el('search').value=query;el('search').oninput=e=>{query=e.target.value;cards()};cards()}
+const icon=(r,mini='')=>'<span class="icon '+mini+'" style="background:'+r[2]+'">'+['👩🏻‍💼','👨🏻‍🏫','👩🏽‍💻','🧑🏻‍💻','👩🏻‍🎨','👨🏻‍💼'][staff.indexOf(r)]+'</span>';
+function directory(){const q=el('lookup').value.trim();el('directory').innerHTML=staff.map((r,i)=>r[0].includes(q)?'<button class="'+(selected===i?'active':'')+'" onclick="chat('+i+')">'+icon(r,'mini')+'<span>'+r[0]+'<small>工号 00'+(i+1)+' · 可用</small></span>'+'</button>':'').join('')||'<p>没有匹配的员工</p>'}
+function cards(){const list=staff.map((r,i)=>[r,i]).filter(([r])=>(r[0]+r[3]).includes(query.trim()));el('count').textContent=list.length+' 位员工';el('grid').innerHTML=list.map(([r,i])=>'<article><div class="employee">'+icon(r)+'<div><h2>'+r[0]+'</h2><span class="employee-id">v1.0 · 工号 00'+(i+1)+'</span></div><small class="status">● 可用</small></div><p>'+r[3]+'</p><div class="card-actions"><small>企业培训团队</small><button class="go" onclick="chat('+i+')">开始会话 →</button></div></article>').join('')||'<p>没有匹配的员工，请换个关键词。</p>'}
+function home(){selected=-1;directory();el('main').innerHTML='<div class="bar"><strong>我的团队</strong><span>数字员工工作台</span></div><div class="head"><div><h1>我的团队</h1><p>企业培训团队 · <span id="count"></span></p></div></div><div class="filterrow"><strong>我的数字员工</strong><input id="search" placeholder="搜索员工或工作内容" aria-label="搜索团队"></div><div id="grid" class="grid"></div>';el('search').value=query;el('search').oninput=e=>{query=e.target.value;cards()};cards()}
 function chat(i){selected=i;directory();const r=staff[i];el('main').innerHTML='<button onclick="home()">← 我的团队</button><div class="panel">'+icon(r)+'<h1>'+r[0]+'</h1><p>'+r[3]+'</p><hr><h2>'+r[4]+'</h2><small>本地示例演示 · 使用预置材料和结果</small><p><button id="load">载入示例材料</button></p><textarea readonly aria-label="示例材料" id="material" placeholder="点击上方按钮载入材料"></textarea><button class="go" id="run" disabled>提交任务 →</button></div><div id="result" aria-live="polite"></div>';el('load').onclick=()=>{el('material').value=r[5];el('run').disabled=false};el('run').onclick=()=>{el('result').innerHTML='<section class="panel"><small>任务已完成</small><p>'+r[6]+'</p><h2>'+r[8]+'</h2><pre id="output">'+r[7]+'</pre><button id="copy">复制'+r[8]+'</button></section>';el('copy').onclick=async()=>{try{await navigator.clipboard.writeText(r[7]);el('copy').textContent='已复制'}catch{const range=document.createRange();range.selectNodeContents(el('output'));const selection=getSelection();selection.removeAllRanges();selection.addRange(range);el('copy').textContent='已选中文字，请手动复制'}};el('result').scrollIntoView({behavior:'smooth',block:'nearest'})}}
 el('lookup').oninput=directory;home();
 </script></html>

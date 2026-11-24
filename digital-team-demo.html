@@ -1,6 +1,41 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同事间 · 数字员工工作台</title><style>
-*{box-sizing:border-box}body{margin:0;font:15px/1.6 "Microsoft YaHei",sans-serif;color:#193b36;background:#f8f9f5}header{height:68px;background:#173e38;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 4%;letter-spacing:1px}header strong{font-size:22px}header small{color:#c8dbd2}.layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 68px)}aside{padding:28px 16px;background:#edf1ea;border-right:1px solid #d8dfd5}input,textarea,button{font:inherit}input,textarea{padding:11px;border:1px solid #bdccc2;border-radius:8px;background:white;width:100%}button{cursor:pointer;color:inherit;border:0;border-radius:7px;padding:9px 13px;background:#e5ede5}button:hover{filter:brightness(.95)}aside button{display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:transparent;margin-top:6px}aside button.active{background:#d7e5d9}main{padding:38px clamp(20px,4vw,70px);max-width:1400px;width:100%}h1{font: bold 38px/1.25 Georgia,"SimSun",serif;margin:10px 0}h2{font-size:19px}p,small{color:#586d62}.head{display:flex;align-items:center;justify-content:space-between;gap:20px}.head input{max-width:220px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}article,.panel{border:1px solid #d7dfd5;border-radius:14px;background:#fff;padding:22px}article{display:flex;flex-direction:column;min-height:240px}article p{flex:1;margin-top:0}.top,footer{display:flex;align-items:center;justify-content:space-between;gap:8px}.icon{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:13px;color:#25473e;font: bold 22px Georgia,serif}.mini{width:30px;height:30px;border-radius:8px;font-size:16px}.go{background:#225546;color:white}.panel{max-width:800px;margin-top:20px}textarea{min-height:96px;resize:vertical;margin:12px 0}pre{white-space:pre-wrap;font:inherit}button:focus-visible{outline:3px solid #be893b}@media(max-width:1050px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.layout{display:block}aside{display:none}main{padding:24px 16px}.head{display:block}.grid{gap:10px}article{padding:15px}h1{font-size:30px}}@media(max-width:480px){.grid{grid-template-columns:1fr}article{min-height:180px}}
-</style><header><strong>◈　同事间</strong><small>数字员工工作台</small></header><div class="layout"><aside><h2>员工通讯录</h2><input id="lookup" aria-label="搜索通讯录" placeholder="搜索员工姓名或岗位"><nav id="directory"></nav></aside><main id="main"></main></div><script>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同事间 · 数字员工工作台</title><link rel="stylesheet" href="style.css?v=anniversary-20261024">
+<link rel="stylesheet" href="book.css?v=book-live-20261020">
+<link rel="stylesheet" href="committee.css?v=ceremony-20261031">
+<style>
+.workspace {display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1440px;margin:auto}
+.workspace aside {padding:28px 18px;background:#f4f5f2;border-right:1px solid #dde3e6}
+.workspace main {padding:36px clamp(20px,4vw,64px);min-width:0}
+.workspace h1,.workspace h2 {font-weight:400}
+.workspace h1 {font-size:clamp(30px,4vw,42px);margin:8px 0;line-height:1.45}
+.workspace h2 {font-size:20px;margin:12px 0}
+.workspace p,.workspace small {color:#556677}
+.workspace input,.workspace textarea {font:inherit;width:100%;padding:10px 12px;background:white;color:#152439;border:1px solid #b6c2cb;border-radius:0}
+.workspace button {color:#244762;background:transparent;border:1px solid #b6c2cb;padding:9px 15px;font-size:14px}
+.workspace button:hover {background:#eef2f4}
+.workspace button:disabled {opacity:.55;cursor:default}
+.workspace .go {background:#102c4b;border-color:#102c4b;color:white}
+.workspace .go:hover {background:#1e4266}
+#directory {display:block}
+#directory button {width:100%;display:flex;align-items:center;gap:10px;border:0;margin-top:5px;text-align:left}
+#directory .active {background:#e6e9eb}
+.head,.top,.card-actions {display:flex;align-items:center;justify-content:space-between;gap:12px}
+.head input {max-width:230px}
+#grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.workspace article,.panel {background:white;border:1px solid #dde3e6;border-top:2px solid #b89c65;padding:22px}
+.workspace article {display:flex;flex-direction:column}
+.workspace article p {flex:1;margin:0 0 20px}
+.icon {display:inline-grid;place-items:center;width:44px;height:44px;color:#7a6645;background:#f3efe6;font-size:22px}
+.mini {width:30px;height:30px;font-size:16px}
+.panel {max-width:800px;margin-top:20px}
+.panel hr {border:0;border-top:1px solid #dde3e6;margin:22px 0}
+.panel textarea {min-height:100px;resize:vertical;margin:0 0 12px}
+.panel pre {white-space:pre-wrap;font:inherit}
+.demo-header {padding-bottom:14px}
+.demo-header .project {margin-left:auto;color:#ddbd7b;font-size:14px}
+@media(max-width:1100px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.workspace{display:block}.workspace aside{display:none}.workspace main{padding:24px 5%}.demo-header .identity-row{flex-wrap:wrap}.demo-header .project{margin-left:0}.head{flex-wrap:wrap}.head input{max-width:none}}
+@media(max-width:550px){#grid{grid-template-columns:1fr}.workspace article{padding:18px}.demo-header .project{width:100%}}
+</style><header class="site-header demo-header"><div class="identity-row"><a class="brand" href="index.html#home"><img src="assets/forum-logo-original.png" alt="岭南数字论坛标识"><span>岭南数字论坛<small>LINGNAN DIGITAL FORUM</small></span></a><a class="committee-brand" href="committee.html"><span class="college-mark"><img src="assets/lingnan-college-logo-original.jpg" alt="中山大学岭南学院LOGO"></span><span><small>岭南广州校友会</small><b>科创与AI赋能专委会</b></span></a><a class="project" href="book.html">AI进化十步法 ↗</a></div></header><div class="workspace"><aside><h2>员工通讯录</h2><input id="lookup" aria-label="搜索通讯录" placeholder="搜索员工姓名或岗位"><nav id="directory"></nav></aside><main id="main"></main></div><script>
 const staff=[
 ['客户需求分析师','访','#d6e8d9','把客户原话整理成需求摘要和下一轮访谈问题。','分析客户访谈','我们有 8 个销售，每次拜访后都要写纪要。大家写法不一样，主管周五还得逐个问，下周该跟进谁。','需求摘要：纪要格式不统一，主管需要逐人确认跟进事项。','能否用最近一次拜访走一遍记录和跟进流程？\n主管每周花多少时间汇总？\n销售和主管分别需要哪些字段？','追问清单'],
 ['课程设计师','课','#f1dfbf','把培训目标拆成一节可以直接试讲的课程。','设计练习','给销售团队设计一节 30 分钟的 AI 纪要课。','课程目标：每人能从访谈中提取客户需求与下一步行动。','5 分钟：对比两份纪要。\n15 分钟：用同一段访谈练习提炼行动项。\n10 分钟：交换检查负责人和截止时间。','课程安排'],
@@ -9,9 +44,9 @@ const staff=[
 ['内容编辑','编','#f1dcd1','将活动信息改写成读者能直接使用的通知。','起草课程通知','周五 14 点在二楼会议室上纪要课，每人带一份脱敏记录。','面向学员的课前通知已整理。','本周五 14:00，请到二楼会议室参加纪要练习课。请提前准备一份脱敏的拜访记录，现场将用它练习提炼跟进事项。','课程通知'],
 ['复盘助手','复','#dde6c7','根据试点记录梳理成效和下轮调整事项。','复盘一次试点','5 人试用纪要模板，4 人按时提交，2 份缺少负责人。','本轮观察：按时提交 4 人，另有 2 份记录缺少负责人。','模板中单列负责人。\n提交前检查行动项。\n下轮记录按时提交数和字段缺失数。','改进清单']];
 const el=id=>document.getElementById(id);let selected=-1,query='';
-const icon=(r,mini='')=>'<span class="icon '+mini+'" style="background:'+r[2]+'">'+r[1]+'</span>';
+const icon=(r,mini='')=>'<span class="icon '+mini+'">'+r[1]+'</span>';
 function directory(){const q=el('lookup').value.trim();el('directory').innerHTML=staff.map((r,i)=>r[0].includes(q)?'<button class="'+(selected===i?'active':'')+'" onclick="chat('+i+')">'+icon(r,'mini')+r[0]+'</button>':'').join('')||'<p>没有匹配的员工</p>'}
-function cards(){const list=staff.map((r,i)=>[r,i]).filter(([r])=>(r[0]+r[3]).includes(query.trim()));el('count').textContent=list.length+' 位员工';el('grid').innerHTML=list.map(([r,i])=>'<article><div class="top">'+icon(r)+'<small>● 可用</small></div><h2>'+r[0]+'</h2><p>'+r[3]+'</p><footer><small>工号 00'+(i+1)+'</small><button class="go" onclick="chat('+i+')">开始会话 →</button></footer></article>').join('')||'<p>没有匹配的员工，请换个关键词。</p>'}
+function cards(){const list=staff.map((r,i)=>[r,i]).filter(([r])=>(r[0]+r[3]).includes(query.trim()));el('count').textContent=list.length+' 位员工';el('grid').innerHTML=list.map(([r,i])=>'<article><div class="top">'+icon(r)+'<small>● 可用</small></div><h2>'+r[0]+'</h2><p>'+r[3]+'</p><div class="card-actions"><small>工号 00'+(i+1)+'</small><button class="go" onclick="chat('+i+')">开始会话 →</button></div></article>').join('')||'<p>没有匹配的员工，请换个关键词。</p>'}
 function home(){selected=-1;directory();el('main').innerHTML='<small>工作台 / 数字员工</small><div class="head"><div><h1>我的团队</h1><p>企业培训团队 · <span id="count"></span></p></div><input id="search" placeholder="搜索员工或工作内容" aria-label="搜索团队"></div><div id="grid" class="grid"></div>';el('search').value=query;el('search').oninput=e=>{query=e.target.value;cards()};cards()}
 function chat(i){selected=i;directory();const r=staff[i];el('main').innerHTML='<button onclick="home()">← 我的团队</button><div class="panel">'+icon(r)+'<h1>'+r[0]+'</h1><p>'+r[3]+'</p><hr><h2>'+r[4]+'</h2><small>本地示例演示 · 使用预置材料和结果</small><p><button id="load">载入示例材料</button></p><textarea readonly aria-label="示例材料" id="material" placeholder="点击上方按钮载入材料"></textarea><button class="go" id="run" disabled>提交任务 →</button></div><div id="result" aria-live="polite"></div>';el('load').onclick=()=>{el('material').value=r[5];el('run').disabled=false};el('run').onclick=()=>{el('result').innerHTML='<section class="panel"><small>任务已完成</small><p>'+r[6]+'</p><h2>'+r[8]+'</h2><pre id="output">'+r[7]+'</pre><button id="copy">复制'+r[8]+'</button></section>';el('copy').onclick=async()=>{try{await navigator.clipboard.writeText(r[7]);el('copy').textContent='已复制'}catch{const range=document.createRange();range.selectNodeContents(el('output'));const selection=getSelection();selection.removeAllRanges();selection.addRange(range);el('copy').textContent='已选中文字，请手动复制'}};el('result').scrollIntoView({behavior:'smooth',block:'nearest'})}}
 el('lookup').oninput=directory;home();
